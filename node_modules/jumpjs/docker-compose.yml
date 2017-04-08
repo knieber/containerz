@@ -1,0 +1,30 @@
+version: '2'
+services:
+  web-server:
+    image: andrewgbliss/express
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./examples/express/views:/usr/src/app/express/views
+      - ./examples/express/routes:/usr/src/app/express/routes
+      - ./examples/express/middleware:/usr/src/app/express/middleware
+      - ./dist:/usr/src/app/express/public/js/jumpjs
+      - ./examples/css/dist:/usr/src/app/express/public/css
+      - ./examples/img:/usr/src/app/express/public/img
+      - ./examples/express/public/js/examples:/usr/src/app/express/public/js/examples
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    command: ['npm', 'start']
+  webpack-compiler:
+    image: andrewgbliss/webpack
+    volumes:
+      - ./src:/webpack/src
+      - ./dist:/webpack/dist
+    command: ['webpack', '--config', '/webpack/src/webpack.config.js']
+  sass-compiler:
+    image: andrewgbliss/sass
+    volumes:
+      - ./examples/css/src:/sass/src
+      - ./examples/css/dist:/sass/dist
+    command: ['sass', '--watch', '/sass/src/app.scss:/sass/dist/app.css']
