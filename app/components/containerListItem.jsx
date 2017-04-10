@@ -16,7 +16,7 @@ export default function ContainerListItem({
 
 	function onActionButtonClick() {
 		socket.emit(
-			isRunning() ? 'container.stop' : 'container.start', 
+			isRunning() ? 'container.stop' : 'container.up',
 			{ id },
 		);
 	}

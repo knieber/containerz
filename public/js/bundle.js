@@ -14023,7 +14023,7 @@ function ContainerListItem(_ref) {
 	}
 
 	function onActionButtonClick() {
-		socket.emit(isRunning() ? 'container.stop' : 'container.start', { id: id });
+		socket.emit(isRunning() ? 'container.stop' : 'container.up', { id: id });
 	}
 
 	var panelClass = isRunning() ? 'success' : 'default';
