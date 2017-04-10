@@ -23,7 +23,6 @@ export default function ContainerListItem({
 
 	const panelClass = isRunning() ? 'success' : 'default';
 	const classes = ('panel', `panel-${panelClass}`);
-	const buttonText = isRunning() ? 'Stop' : 'Start';
 
 	return (
 		<div className="col-sm-3">
@@ -38,7 +37,7 @@ export default function ContainerListItem({
 						onClick={onActionButtonClick}
 						className="btn btn-default"
 					>
-						{buttonText}
+						{ isRunning() ? 'Stop' : 'Start' }
 					</button>
 				</div>
 			</div>
